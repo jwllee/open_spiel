@@ -27,7 +27,7 @@ CMDLINE='groupadd -f $(GROUPNAME) && groupmod -o -g $(GID) $(GROUPNAME); \
 		usermod -o -u $(UID) -g $(GID) $(USERNAME); \
 		chroot --userspec=$(USERNAME) / && cd code'
 
-CMD='export PYTHONPATH=$$PYTHONPATH:/$$HOME/code/open_spiel; export PYTHONPATH=$$PYTHONPATH:/$$HOME/code/open_spiel/build/python; /bin/bash'
+CMD='export PYTHONPATH=$$PYTHONPATH:$$HOME/code/open_spiel; export PYTHONPATH=$$PYTHONPATH:$$HOME/code/build/python; git config --global user.email "$(EMAIL)"; git config --global user.name "$(USERNAME)"; /bin/bash'
 run-container: build-docker
 	docker run -it \
 		-e DISPLAY=unix$(DISPLAY) \
